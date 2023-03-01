@@ -10,18 +10,16 @@ import main from '../assets/image2.svg';
 import { animated, useInView, easings } from '@react-spring/web';
 
 const Product = () => {
-  const [image, slideLeft] = useInView(() => ({
+  const [image, slideRight] = useInView(() => ({
     from: {
       opacity: 0,
-      x: 80,
+      x: -80,
     },
     to: {
       opacity: 1,
       x: 0,
     },
-    config: {
-      duration: 400,
-    },
+    config: { duration: 400 },
   }));
 
   const [text, slideUp] = useInView(() => ({
@@ -40,41 +38,28 @@ const Product = () => {
 
   return (
     <Section id="product">
-      <TextContainer ref={text}>
+      <Image ref={image} style={slideRight} src={main} />
+
+      <TextContainer right ref={text}>
         <h1 className="title">
           <animated.span style={slideUp}>RediSee</animated.span>
         </h1>
         <h4 className="subtitle">
           <animated.span style={slideUp}>
-            A web application to Monitor redis database
+            The Perfect Tool to Motitor your Redis Instances.
           </animated.span>
         </h4>
         <p className="paragraph">
           <animated.span style={slideUp}>
-            Sed feugiat euismod ex ut tincidunt. Pellentesque dictum luctus
+            Visualizing the health of your Redis instances is only a few short
+            steps away. Click the link below, to access RediSee GitHub where you
+            can clone the repo, and follow easy set-up instructions.
           </animated.span>
         </p>
-        <p className="paragraph">
-          <animated.span style={slideUp}>
-            suscipit. Etiam faucibus placerat neque, et vehicula dui accumsan
-          </animated.span>
-        </p>
-        <p className="paragraph">
-          <animated.span style={slideUp}>
-            vitae. Duis quis nibh nec metus aliquet lobortis.
-          </animated.span>
-        </p>
-
-        <Clipboard>
-          <p>github/resisSee</p>
-          <IconClipBoard
-            onClick={() => {
-              console.log('copy');
-            }}
-          />
-        </Clipboard>
+        <a href={'https://github.com/redisee-Team/redisee'} target="_blank">
+          go to our repository
+        </a>
       </TextContainer>
-      <Image ref={image} style={slideLeft} src={main} />
     </Section>
   );
 };

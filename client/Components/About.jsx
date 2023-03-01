@@ -4,16 +4,18 @@ import { Section, Image, TextContainer } from './Styled/Global';
 import { animated, useInView } from '@react-spring/web';
 
 const About = () => {
-  const [image, slideRight] = useInView(() => ({
+  const [image, slideLeft] = useInView(() => ({
     from: {
       opacity: 0,
-      x: -80,
+      x: 80,
     },
     to: {
       opacity: 1,
       x: 0,
     },
-    config: { duration: 400 },
+    config: {
+      duration: 400,
+    },
   }));
 
   const [text, slideUp] = useInView(() => ({
@@ -31,44 +33,23 @@ const About = () => {
   }));
 
   return (
-    <Section id="about">
-      <Image ref={image} style={slideRight} src={image2} />
+    <Section imgRight id="about">
       <TextContainer ref={text} right>
         <h2 className="title">
           <animated.span style={slideUp}>What is RediSee ?</animated.span>
         </h2>
         <p className="paragraph">
-          <animated.span style={slideUp}>
-            maximus lectus dolor eget magna. Morbi convallis tincidunt felis sit
-          </animated.span>
-        </p>
-        <p className="paragraph">
-          <animated.span style={slideUp}>
-            scelerisque, leo in iaculis aliquam, nibh quam sollicitudin tellus,
-            in
-          </animated.span>
-        </p>
-        <p className="paragraph">
-          <animated.span style={slideUp}>
-            suscipit, elementum neque vitae, ultrices enim. Vestibulum
-          </animated.span>
-        </p>
-        <p className="paragraph">
-          <animated.span style={slideUp}>
-            <b>auctor a bibendum non</b>, dapibus sed magna. Integer et diam
-          </animated.span>
-        </p>
-        <p className="paragraph">
-          <animated.span style={slideUp}>
-            volutpat diam ac arcu ornare, non <b>faucibus tortor sodales.</b>
-          </animated.span>
-        </p>
-        <p className="paragraph">
-          <animated.span style={slideUp}>
-            Maecenas eu mattis risus. Morbi maximus dolor id ullamcorper
-          </animated.span>
+          <animated.p style={slideUp}>
+            RediSee provides real-time monitoring of Redis instances. Metrics
+            are available for keyspace, evicted keys, memory used, keyspace
+            misses, hit rate, latency, etc. Multiple instances can be visualized
+            simultaneously. RediSee is easy to navigate and use, with creation
+            and deletion of instance visualization being completed with the
+            click of a button.
+          </animated.p>
         </p>
       </TextContainer>
+      <Image right ref={image} style={slideLeft} src={image2} />
     </Section>
   );
 };
